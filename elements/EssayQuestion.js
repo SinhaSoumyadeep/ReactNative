@@ -5,8 +5,8 @@ import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements
 import { withNavigation } from 'react-navigation';
 import QuestionList from "../components/QuestionList";
 
-class TrueFalseQuestionEditor extends React.Component {
-    static navigationOptions = { title: "TrueFalseQuestionEditor"}
+class EssayQuestion extends React.Component {
+    static navigationOptions = { title: "EssayQuestion"}
     constructor(props) {
         super(props)
         this.state = {
@@ -14,7 +14,6 @@ class TrueFalseQuestionEditor extends React.Component {
             title: '',
             subtitle: '',
             points: 0,
-            isTrue: false
 
         }
 
@@ -31,7 +30,7 @@ class TrueFalseQuestionEditor extends React.Component {
         if(typeof this.props.navigation.getParam("question", 1).id === "undefined")
         {
             this.setState({
-                examId: this.props.examId,
+                examId: this.props.exam.id,
                 title: 'default Title',
                 subtitle: 'default description',
                 points: 0,
@@ -46,8 +45,6 @@ class TrueFalseQuestionEditor extends React.Component {
                 title: this.props.navigation.getParam("question", 1).title,
                 subtitle: this.props.navigation.getParam("question", 1). subtitle,
                 points:this.props.navigation.getParam("question", 1). points,
-                isTrue: this.props.navigation.getParam("question", 1). isTrue
-
 
 
             })
@@ -64,8 +61,8 @@ class TrueFalseQuestionEditor extends React.Component {
     widgetSave()
     {
 
-        var essayQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, options: this.state.options,isTrue: true ,icon: 'check', type: "TF"}
-        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/tfquestion/EID'.replace('EID',this.state.examId)
+        var essayQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, options: this.state.options, icon: 'subject', type: "ES"}
+        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/essayquestion/EID'.replace('EID',this.state.examId)
         Alert.alert(saveUrl)
         fetch(saveUrl, {
             body: JSON.stringify(essayQuiz),
@@ -117,9 +114,7 @@ class TrueFalseQuestionEditor extends React.Component {
                 <FormValidationMessage>
                     Point is required
                 </FormValidationMessage>
-                <CheckBox onPress={() => this.updateForm({isTrue: !this.state.isTrue})}
-                          checked={this.state.isTrue} title='The answer is true'
-                />
+
 
 
 
@@ -136,7 +131,6 @@ class TrueFalseQuestionEditor extends React.Component {
                 <Text h3>Preview</Text>
                 <Text h2>{this.state.title}</Text><Text h2>{this.state.points}</Text>
                 <Text>{this.state.subtitle}</Text>
-                <Text>{this.state.isTrue}</Text>
 
 
 
@@ -145,5 +139,4 @@ class TrueFalseQuestionEditor extends React.Component {
     }
 }
 
-export default withNavigation(TrueFalseQuestionEditor);
-
+export default withNavigation(EssayQuestion);

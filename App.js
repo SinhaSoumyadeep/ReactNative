@@ -6,7 +6,7 @@ import Icons from './elements/Icons'
 import Exam from './elements/Exam'
 import QuestionTypeButtonGroupChooser from './elements/QuestionTypeButtonGroupChooser'
 import QuestionTypePicker from './elements/QuestionTypePicker'
-import TrueFalseQuestionEditor from './elements/TrueFalseQuestionEditor'
+
 
 import { createStackNavigator } from 'react-navigation'
 import {Button} from 'react-native-elements'
@@ -25,6 +25,8 @@ import ExamList from './components/ExamList'
 import QuestionList from './components/QuestionList'
 import ExamEditor from './components/ExamEditor'
 import MultipleChoiceQuestionEditor from './elements/MultipleChoiceQuestionEditor'
+import EssayQuestion from './elements/EssayQuestion'
+import TrueFalseQuestionEditor from './elements/TrueFalseQuestionEditor'
 
 
 
@@ -115,7 +117,8 @@ const App = createStackNavigator({
     ExamWidget,
     ExamList,
     QuestionList,
-    ExamEditor
+    ExamEditor,
+    EssayQuestion
 
 });
 

@@ -44,6 +44,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
                 id: this.props.navigation.getParam("question", 1).id,
                 title: this.props.navigation.getParam("question", 1).title,
                 subtitle: this.props.navigation.getParam("question", 1). subtitle,
+                points:this.props.navigation.getParam("question", 1). points,
                 options: this.props.navigation.getParam("question", 1).options
 
             })
@@ -84,7 +85,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
           text => this.updateForm({title: text})
         }
 
-        value={this.state.title}
+        value={""+this.state.title}
         />
         <FormValidationMessage>
           Title is required
@@ -95,11 +96,24 @@ class MultipleChoiceQuestionEditor extends React.Component {
           text => this.updateForm({subtitle: text})
         }
 
-                   value={this.state.subtitle}
+                   value={""+this.state.subtitle}
         />
         <FormValidationMessage>
           Description is required
         </FormValidationMessage>
+
+          <FormLabel>Points</FormLabel>
+          <FormInput
+              keyboardType = 'numeric'
+              onChangeText={
+              text => this.updateForm({points: text})
+          }
+
+                     value={""+this.state.points}
+          />
+          <FormValidationMessage>
+              Point is required
+          </FormValidationMessage>
 
         <FormLabel>Choices</FormLabel>
           <TextInput
@@ -113,7 +127,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
               editable={true}
               onChangeText={
                   text => this.updateForm({options: text})}
-              value={this.state.options}
+              value={""+this.state.options}
           />
 
 
@@ -128,7 +142,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
                  title="Cancel"/>
 
         <Text h3>Preview</Text>
-        <Text h2>{this.state.title}</Text>
+        <Text h2>{this.state.title}</Text><Text h2>{this.state.points}</Text>
         <Text>{this.state.subtitle}</Text>
           {this.state.options != ''&&this.state.options.split('\n').map((option,index)=>
               {

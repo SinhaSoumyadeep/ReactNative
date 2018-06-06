@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 import {Picker, ScrollView, Alert} from 'react-native'
 import {Text, Button, CheckBox} from 'react-native-elements'
 import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements'
-import TrueFalseQuestionEditor from '../elements/TrueFalseQuestionEditor'
+
 import MultipleChoiceQuestionEditor from "../elements/MultipleChoiceQuestionEditor";
+import EssayQuestion from "../elements/EssayQuestion";
+import TrueFalseQuestionEditor from '../elements/TrueFalseQuestionEditor';
 
 
 class QuestionEditor extends Component {
@@ -55,8 +57,8 @@ class QuestionEditor extends Component {
                 </Picker>
 
                 {this.state.questionType==='MC' && <MultipleChoiceQuestionEditor exam={this.props.navigation.getParam("exam", 1)}/>}
-                {this.state.questionType==='ES' && <Text h3> Essay</Text>}
-                {this.state.questionType==='TF' && <TrueFalseQuestionEditor/>}
+                {this.state.questionType==='ES' && <EssayQuestion  exam={this.props.navigation.getParam("exam", 1)}/>}
+                {this.state.questionType==='TF' && <TrueFalseQuestionEditor examId={this.props.navigation.getParam("exam", 1).id}/>}
                 {this.state.questionType==='FB' && <Text h3> Fill in the blanks</Text>}
 
 

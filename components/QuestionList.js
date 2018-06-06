@@ -37,6 +37,23 @@ class QuestionList extends Component {
             .then(questions => this.setState({questions}))
     }
 
+    deleteQuestion(type, id)
+    {
+        Alert.alert(id)
+        var deleteUrl= "http://10.0.0.89:8080/api/qwidget/delete/question/QWID".replace('QWID', id).replace('question', type)
+        Alert.alert(deleteUrl)
+        fetch(deleteUrl,
+            {
+                body: JSON.stringify({id: id}),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'DELETE'
+            }
+        ).then(
+            (response)=> {this.fetchQuestion()}
+        )
+    }
 
 
 
@@ -73,7 +90,28 @@ class QuestionList extends Component {
                                             color='red'
                                             name='ios-create'
                                             type='ionicon'
-                                            onPress={() => this.props.navigation.navigate('MultipleChoiceQuestionEditor', {exam: this.props.navigation.getParam("exam", 1), question: question})}
+                                            onPress={() =>
+
+                                            {
+                                                if(question.type == 'MC'){
+                                                    this.props.navigation.navigate('MultipleChoiceQuestionEditor', {exam: this.props.navigation.getParam("exam", 1), question: question})
+                                                }
+
+                                                if(question.type == 'ES'){
+                                                    this.props.navigation.navigate('EssayQuestion', {exam: this.props.navigation.getParam("exam", 1), question: question})
+                                                }
+
+                                                if(question.type == 'TF'){
+                                                    this.props.navigation.navigate('TrueFalseQuestionEditor', {exam: this.props.navigation.getParam("exam", 1), question: question})
+                                                }
+
+                                            }
+
+
+
+
+
+                                            }
 
                                         />
 
@@ -86,6 +124,7 @@ class QuestionList extends Component {
                                             color='red'
                                             name='ios-trash'
                                             type='ionicon'
+                                            onPress={() => this.deleteQuestion(""+question.type,"" + question.id)}
 
                                         />
 
