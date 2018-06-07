@@ -24,7 +24,7 @@ class ExamWidget extends Component {
 
     fetchExams()
     {
-        var fetchUrl = "http://10.0.0.89:8080/api/qwidget/exam/TID".replace('TID',this.props.navigation.getParam("topicId", 1))
+        var fetchUrl = "https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/exam/TID".replace('TID',this.props.navigation.getParam("topicId", 1))
         fetch(fetchUrl)
             .then(response => (response.json()))
             .then(exams => this.setState({exams}))
@@ -34,7 +34,7 @@ class ExamWidget extends Component {
     {
 
         var exxam = {title: "DEFAULT_EXAM", description: "DEFAULT_DESCRIPTION", points: "0", widgetType: "Quiz"}
-        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/exam/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
+        var saveUrl = 'https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/save/exam/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
 
         fetch(saveUrl, {
             body: JSON.stringify(exxam),
@@ -51,7 +51,7 @@ class ExamWidget extends Component {
     deleteExam(id)
     {
 
-        var deleteUrl= "http://10.0.0.89:8080/api/qwidget/delete/QWID".replace('QWID', id)
+        var deleteUrl= "https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/delete/QWID".replace('QWID', id)
         fetch(deleteUrl,
             {
                 body: JSON.stringify({id: id}),

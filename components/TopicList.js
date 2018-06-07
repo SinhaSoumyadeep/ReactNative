@@ -16,7 +16,7 @@ class TopicList extends Component {
     componentDidMount() {
         const {navigation} = this.props;
         const lessonId = navigation.getParam("lessonId")
-        fetch("http://10.0.0.89:8080/api/lesson/"+lessonId)
+        fetch("https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/lesson/"+lessonId)
             .then(response => (response.json()))
             .then(topics => this.setState({topics}))
     }

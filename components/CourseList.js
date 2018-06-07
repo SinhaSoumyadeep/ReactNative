@@ -7,7 +7,7 @@ class CourseList extends Component {
   constructor(props) {
     super(props)
 
-    fetch('http://10.0.0.89:8080/api/course')
+    fetch('https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/course')
       .then(response => (response.json()))
       .then(courses => {
         this.setState({courses: courses})

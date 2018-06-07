@@ -64,7 +64,7 @@ class AssignmentEditor extends Component {
     {
 
         var assign = {id: this.props.navigation.getParam("assignment", 1).id,title: this.state.title, description: this.state.description, points: this.state.points, widgetType: "Assignment"}
-        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
+        var saveUrl = 'https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/save/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
 
         fetch(saveUrl, {
             body: JSON.stringify(assign),
@@ -116,34 +116,52 @@ class AssignmentEditor extends Component {
                     Points is required
                 </FormValidationMessage>
 
-                <Button	backgroundColor="green"
-                           color="white"
-                           title="Save"
-                           onPress={() => {this.widgetSave()}}/>
-                <Button	backgroundColor="red"
-                           color="white"
-                           title="Cancel"/>
+                <View style={{marginTop: 10}}>
+                    <Button	backgroundColor="green"
+                               color="white"
+                               title="Save"
+                               onPress={() => {this.widgetSave()}}
 
-                <Text h3>Preview</Text>
-                <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10, backgroundColor: "white"}}>
-                <Text style={{borderWidth: 1, borderColor: "#aaa"}} h2>Assignment</Text>
-                    <View>
-                        <Text h3>{this.state.title}</Text>
-                        <Text h4>Points: {this.state.points}</Text>
-                        <Text h6>{this.state.description}</Text>
+                    />
+                    <Button	backgroundColor="red"
+                               color="white"
+                               title="Cancel"
+                               onPress={()=>{this.props.navigation.goBack()}}
+                    />
+                </View>
+
+                <View style={{marginTop: 50}}>
+
+                <View>
+
+                    <Text h3>Preview</Text>
+                    <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10,backgroundColor: "white"}}>
+                        <Text style={{borderWidth: 1, borderColor: "#aaa", marginBottom: 10}} h2>Assignment</Text>
+                        <Text h3>{this.props.navigation.getParam("assignment", 1).title}</Text>
+                        <Text h4>Points: {this.props.navigation.getParam("assignment", 1).points}</Text>
+                        <Text h6>{this.props.navigation.getParam("assignment", 1).description}</Text>
+                        <TextInput
+                            style={{
+                                borderWidth: 1,
+                                borderColor: "black",
+                                height: 134,
+                                backgroundColor: "white",
+                                margin: 7,
+                                padding: 4
+                            }}
+                        />
+                        <View style={{marginTop: 10}}>
+                            <Button	backgroundColor="green"
+                                       color="white"
+                                       title="Save"
+
+                            />
+                            <Button	backgroundColor="red"
+                                       color="white"
+                                       title="Cancel"/>
+                        </View>
                     </View>
-                <TextInput
-                    style={{
-                        borderWidth: 1,
-                        borderColor: "#aaa",
-                        height: 134
-
-                    }}
-                />
-                <Button	backgroundColor="green"
-                           color="white"
-                           title="Save"
-                           onPress={() => {Alert.alert("save")}}/>
+                </View>
                 </View>
 
             </ScrollView>

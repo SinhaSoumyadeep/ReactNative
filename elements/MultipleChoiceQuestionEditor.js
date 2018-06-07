@@ -67,7 +67,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
     {
 
         var mulQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, options: this.state.options, icon: 'list', type: "MC", correctOption: this.state.correctOption}
-        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/question/EID'.replace('EID',this.state.examId)
+        var saveUrl = 'https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/save/question/EID'.replace('EID',this.state.examId)
         fetch(saveUrl, {
             body: JSON.stringify(mulQuiz),
             headers: {
@@ -88,8 +88,8 @@ class MultipleChoiceQuestionEditor extends React.Component {
 
   render() {
     return(
-      <ScrollView>
-
+      <ScrollView >
+          <Text style={{borderWidth: 1, borderColor: "black"}} h4>Multiple Choice Editor</Text>
         <FormLabel>Title</FormLabel>
         <FormInput onChangeText={
           text => this.updateForm({title: text})
@@ -130,7 +130,10 @@ class MultipleChoiceQuestionEditor extends React.Component {
               style={{
                   borderWidth: 1,
                   borderColor: "black",
-                  height: 134
+                  height: 134,
+                  backgroundColor: "white",
+                  margin: 7,
+                  padding: 4
 
               }}
               multiline={true}
@@ -140,29 +143,53 @@ class MultipleChoiceQuestionEditor extends React.Component {
               value={""+this.state.options}
           />
 
-
-        <Button	backgroundColor="green"
-                 color="white"
-                 title="Save"
-                   onPress={() => {this.widgetSave()}}/>
-
-        />
-        <Button	backgroundColor="red"
-                 color="white"
-                 title="Cancel"/>
-
-        <Text h3>Preview</Text>
-          <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10, backgroundColor: "white"}}>
-              <Text style={{borderWidth: 1, borderColor: "#aaa"}} h2>Multiple Choice</Text>
-        <Text h4>{this.state.title}</Text><Text h4>Points: {this.state.points}</Text>
-        <Text >Question: {this.state.subtitle}</Text>
+          <FormLabel>Select Correct Choice</FormLabel>
 
           <RadioGroup
               onSelect = {(index, value) => this.onSelect(index, value)}
               selectedIndex={this.state.correctOption}
           >
 
-              {this.state.options != ''&&this.state.options.split("\n").map((option,index)=>(
+              {this.state.options != null&&this.state.options.split("\n").map((option,index)=>(
+
+                      <RadioButton key={index} value={index} >
+                          <Text>{option}</Text>
+                      </RadioButton>
+
+
+                  )
+              )}
+
+
+          </RadioGroup>
+
+
+          <View style={{marginTop: 10}}>
+              <Button	backgroundColor="green"
+                         color="white"
+                         title="Save"
+                         onPress={() => {this.widgetSave()}}
+
+              />
+              <Button	backgroundColor="red"
+                         color="white"
+                         title="Cancel"
+                         onPress={()=>{this.props.navigation.goBack()}}
+              />
+          </View>
+          <View style={{marginTop: 50}}>
+
+        <Text h3>Preview</Text>
+          <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10, backgroundColor: "white"}}>
+              <Text style={{borderWidth: 1, borderColor: "#aaa", marginBottom: 10}} h2>Multiple Choice</Text>
+        <Text h4>{this.state.title}</Text><Text h4>Points: {this.state.points}</Text>
+        <Text >Question: {this.state.subtitle}</Text>
+
+          <RadioGroup
+
+          >
+
+              {this.state.options != null&&this.state.options.split("\n").map((option,index)=>(
 
                   <RadioButton key={index} value={index} >
                       <Text>{option}</Text>
@@ -174,6 +201,7 @@ class MultipleChoiceQuestionEditor extends React.Component {
 
 
           </RadioGroup>
+              <View style={{marginTop: 10}}>
               <Button	backgroundColor="green"
                          color="white"
                          title="Save"
@@ -183,10 +211,11 @@ class MultipleChoiceQuestionEditor extends React.Component {
               <Button	backgroundColor="red"
                          color="white"
                          title="Cancel"/>
+              </View>
           </View>
 
 
-
+</View>
 
 
 

@@ -65,7 +65,7 @@ class TrueFalseQuestionEditor extends React.Component {
     {
 
         var essayQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, options: this.state.options,isTrue: this.state.isTrue,icon: 'check', type: "TF"}
-        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/tfquestion/EID'.replace('EID',this.state.examId)
+        var saveUrl = 'https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/save/tfquestion/EID'.replace('EID',this.state.examId)
 
         fetch(saveUrl, {
             body: JSON.stringify(essayQuiz),
@@ -82,6 +82,7 @@ class TrueFalseQuestionEditor extends React.Component {
     render() {
         return(
             <ScrollView>
+                <Text style={{borderWidth: 1, borderColor: "black"}} h4>True False Editor</Text>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput onChangeText={
@@ -123,23 +124,31 @@ class TrueFalseQuestionEditor extends React.Component {
 
 
 
-                <Button	backgroundColor="green"
-                           color="white"
-                           title="Save"
-                           onPress={() => {this.widgetSave()}}
+                <View style={{marginTop: 10}}>
+                    <Button	backgroundColor="green"
+                               color="white"
+                               title="Save"
+                               onPress={() => {this.widgetSave()}}
 
-                />
-                <Button	backgroundColor="red"
-                           color="white"
-                           title="Cancel"/>
+                    />
+                    <Button	backgroundColor="red"
+                               color="white"
+                               title="Cancel"
+                               onPress={()=>{this.props.navigation.goBack()}}
+                    />
+                </View>
+
+                <View style={{marginTop: 50}}>
 
                 <Text h3>Preview</Text>
                 <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10,backgroundColor: "white"}}>
-                    <Text style={{borderWidth: 1, borderColor: "#aaa"}} h2>True Or False</Text>
+                    <Text style={{borderWidth: 1, borderColor: "#aaa", marginBottom: 10}} h2>True Or False</Text>
                 <Text h4>{this.state.title}</Text><Text h4>Points: {this.state.points}</Text>
                 <Text>Question: {this.state.subtitle}</Text>
-                    <CheckBox checked={this.state.isTrue} title='The answer is true'
+                    <CheckBox checked={true} title='The answer is true'
                     />
+
+                    <View style={{marginTop: 10}}>
                     <Button	backgroundColor="green"
                                color="white"
                                title="Save"
@@ -148,8 +157,9 @@ class TrueFalseQuestionEditor extends React.Component {
                     <Button	backgroundColor="red"
                                color="white"
                                title="Cancel"/>
+                    </View>
                 </View>
-
+                </View>
 
 
             </ScrollView>

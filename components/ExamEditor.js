@@ -64,7 +64,7 @@ class ExamEditor extends Component {
     {
 
         var exxam = {id: this.state.id,title: this.state.title, description: this.state.description, points: this.state.points, widgetType: "Quiz"}
-        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/exam/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
+        var saveUrl = 'https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/save/exam/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
 
         fetch(saveUrl, {
             body: JSON.stringify(exxam),
@@ -121,7 +121,9 @@ class ExamEditor extends Component {
                            onPress={() => {this.widgetSave()}}/>
                 <Button	backgroundColor="red"
                            color="white"
-                           title="Cancel"/>
+                           title="Cancel"
+                           onPress={()=>{this.props.navigation.goBack()}}
+                />
 
             </ScrollView>
         )

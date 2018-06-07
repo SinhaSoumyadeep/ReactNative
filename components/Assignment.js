@@ -24,7 +24,7 @@ class Assignment extends Component {
 
     fetchAssignment()
     {
-        var fetchUrl = "http://10.0.0.89:8080/api/qwidget/assign/TID".replace('TID',this.props.navigation.getParam("topicId", 1))
+        var fetchUrl = "https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/assign/TID".replace('TID',this.props.navigation.getParam("topicId", 1))
         fetch(fetchUrl)
             .then(response => (response.json()))
             .then(assignments => this.setState({assignments}))
@@ -33,7 +33,7 @@ class Assignment extends Component {
     deleteAssignment(id)
     {
 
-        var deleteUrl= "http://10.0.0.89:8080/api/qwidget/delete/QWID".replace('QWID', id)
+        var deleteUrl= "https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/delete/QWID".replace('QWID', id)
         fetch(deleteUrl,
             {
                 body: JSON.stringify({id: id}),

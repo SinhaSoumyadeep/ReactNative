@@ -28,6 +28,10 @@ import MultipleChoiceQuestionEditor from './elements/MultipleChoiceQuestionEdito
 import EssayQuestion from './elements/EssayQuestion'
 import TrueFalseQuestionEditor from './elements/TrueFalseQuestionEditor'
 import FillInTheBlanks from './elements/FillInTheBlanks'
+import MultipleChoicePreview from './elements/MultipleChoicePreview'
+import FillInTheBlanksPreview from './elements/FillInTheBlanksPreview'
+import EssayQuestionPreview from './elements/EssayQuestionPreview'
+import TrueAndFalsePreview from './elements/TrueAndFalsePreview'
 
 
 
@@ -99,7 +103,11 @@ const App = createStackNavigator({
     QuestionList,
     ExamEditor,
     EssayQuestion,
-    FillInTheBlanks
+    FillInTheBlanks,
+    MultipleChoicePreview,
+    FillInTheBlanksPreview,
+    EssayQuestionPreview,
+    TrueAndFalsePreview
 
 });
 

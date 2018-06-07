@@ -31,7 +31,7 @@ class QuestionList extends Component {
 
     fetchQuestion()
     {
-        var fetchUrl = "http://10.0.0.89:8080/api/multi/EID".replace('EID',this.props.navigation.getParam("exam", 1).id)
+        var fetchUrl = "https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/multi/EID".replace('EID',this.props.navigation.getParam("exam", 1).id)
         fetch(fetchUrl)
             .then(response => (response.json()))
             .then(questions => this.setState({questions}))
@@ -40,7 +40,7 @@ class QuestionList extends Component {
     deleteQuestion(type, id)
     {
 
-        var deleteUrl= "http://10.0.0.89:8080/api/qwidget/delete/question/QWID".replace('QWID', id).replace('question', type)
+        var deleteUrl= "https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/delete/question/QWID".replace('QWID', id).replace('question', type)
 
         fetch(deleteUrl,
             {
@@ -64,14 +64,29 @@ class QuestionList extends Component {
         return(
 
 
-            <ScrollView style={{padding: 15}}>
+            <ScrollView style={{padding: 7}}>
 
 
                 <Button backgroundColor="green" title="Create Question" onPress={() => this.props.navigation.navigate('QuestionEditor', {exam: this.props.navigation.getParam("exam", 1)}) }/>
                 {this.state.questions.map(
                     (question, index) => (
                         <ListItem
+                            onPress={() =>{
 
+                                if(question.type == 'MC'){
+                                    this.props.navigation.navigate('MultipleChoicePreview', {exam: this.props.navigation.getParam("exam", 1), question: question})
+                                }
+                                if(question.type == 'FB'){
+                                    this.props.navigation.navigate('FillInTheBlanksPreview', {exam: this.props.navigation.getParam("exam", 1), question: question})
+                                }
+                                if(question.type == 'ES'){
+                                    this.props.navigation.navigate('EssayQuestionPreview', {exam: this.props.navigation.getParam("exam", 1), question: question})
+                                }
+                                if(question.type == 'TF'){
+                                    this.props.navigation.navigate('TrueAndFalsePreview', {exam: this.props.navigation.getParam("exam", 1), question: question})
+                                }
+
+                            }}
                             key={index}
                             leftIcon={{name: question.icon}}
                             subtitle={question.subtitle}

@@ -67,7 +67,7 @@ class FillInTheBlanks extends React.Component {
     {
 
         var fbQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, blanks: this.state.blanks, icon: 'code', type: "FB"}
-        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/fbquestion/EID'.replace('EID',this.state.examId)
+        var saveUrl = 'https://webdev-summer1-2018-sinha-sou.herokuapp.com/api/qwidget/save/fbquestion/EID'.replace('EID',this.state.examId)
         fetch(saveUrl, {
             body: JSON.stringify(fbQuiz),
             headers: {
@@ -96,7 +96,8 @@ class FillInTheBlanks extends React.Component {
 
     render() {
         return(
-            <ScrollView>
+            <ScrollView >
+                <Text style={{borderWidth: 1, borderColor: "black"}} h4>Fill In The Blanks Editor</Text>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput onChangeText={
@@ -133,12 +134,15 @@ class FillInTheBlanks extends React.Component {
                     Point is required
                 </FormValidationMessage>
 
-                <FormLabel>Choices</FormLabel>
+                <FormLabel>Create Fill In The Blanks</FormLabel>
                 <TextInput
                     style={{
                         borderWidth: 1,
                         borderColor: "black",
-                        height: 134
+                        height: 134,
+                        backgroundColor: "white",
+                        margin: 7,
+                        padding: 4
 
                     }}
                     multiline={true}
@@ -148,7 +152,7 @@ class FillInTheBlanks extends React.Component {
                     value={""+this.state.blanks}
                 />
 
-
+                <View style={{marginTop: 10}}>
                 <Button	backgroundColor="green"
                            color="white"
                            title="Save"
@@ -157,12 +161,17 @@ class FillInTheBlanks extends React.Component {
                 />
                 <Button	backgroundColor="red"
                            color="white"
-                           title="Cancel"/>
+                           title="Cancel"
+                           onPress={()=>{this.props.navigation.goBack()}}
+                />
+                </View>
+
+                <View style={{marginTop: 50}}>
 
                 <Text h3>Preview</Text>
 
                 <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10,backgroundColor: "white"}}>
-                    <Text style={{borderWidth: 1, borderColor: "#aaa"}} h2>Fill In The Blanks</Text>
+                    <Text style={{borderWidth: 1, borderColor: "#aaa", marginBottom: 10}} h2>Fill In The Blanks</Text>
                 <Text h4>{this.state.title}</Text><Text h4>Points: {this.state.points}</Text>
                 <Text>Question: {this.state.subtitle}</Text>
 
@@ -175,17 +184,19 @@ class FillInTheBlanks extends React.Component {
                             var second = first[1].split("]")
 
                             return (
-                                <View key={index} style={{flexDirection: "row"}}>
+                                <View key={index} style={{flexDirection: "row", margin: 2}}>
+
+
                                     <View key={1000+index}>
 
-                                        <Text key={index} h4>{first[0]}</Text>
+                                        <Text key={index} h5>{first[0]}</Text>
                                     </View>
                                     <View key={2000+index}>
                                         <TextInput
                                             style={{
                                                 borderWidth: 1,
                                                 borderColor: "black",
-                                                height: 5,
+                                                height: 3,
                                                 padding: 20
 
                                             }}
@@ -194,8 +205,9 @@ class FillInTheBlanks extends React.Component {
                                         ></TextInput>
                                     </View>
                                     <View key={3000+index}>
-                                        <Text h4>{second[1]}</Text>
+                                        <Text h5>{second[1]}</Text>
                                     </View>
+
 
 
 
@@ -209,7 +221,7 @@ class FillInTheBlanks extends React.Component {
                     })
 
                     }
-
+                    <View style={{marginTop: 10}}>
                     <Button	backgroundColor="green"
                                color="white"
                                title="Save"
@@ -219,6 +231,9 @@ class FillInTheBlanks extends React.Component {
                     <Button	backgroundColor="red"
                                color="white"
                                title="Cancel"/>
+                    </View>
+                </View>
+
                 </View>
 
 

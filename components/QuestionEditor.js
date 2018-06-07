@@ -41,7 +41,7 @@ class QuestionEditor extends Component {
         return(
 
 
-            <ScrollView style={{padding: 15}}>
+            <ScrollView style={{padding: 7}}>
 
 
 
