@@ -32,7 +32,7 @@ class Assignment extends Component {
 
     deleteAssignment(id)
     {
-       Alert.alert(id)
+
         var deleteUrl= "http://10.0.0.89:8080/api/qwidget/delete/QWID".replace('QWID', id)
         fetch(deleteUrl,
             {
@@ -53,7 +53,7 @@ class Assignment extends Component {
             <ScrollView style={{padding: 15}}>
 
 
-                <Button title="Create Assignment"
+                <Button backgroundColor="green" title="Create Assignment"
                         onPress={() => this.props.navigation
                             .navigate('AssignmentEditor',{topicId: this.props.navigation.getParam("topicId", 1)}) } />
 

@@ -65,7 +65,7 @@ class ExamEditor extends Component {
 
         var exxam = {id: this.state.id,title: this.state.title, description: this.state.description, points: this.state.points, widgetType: "Quiz"}
         var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/exam/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
-        Alert.alert(saveUrl)
+
         fetch(saveUrl, {
             body: JSON.stringify(exxam),
             headers: {
@@ -81,10 +81,8 @@ class ExamEditor extends Component {
         return(
 
 
-            <ScrollView style={{padding: 15}}>
+            <ScrollView>
 
-
-                <Text h1>THIS IS THE TOPIC ID:{this.props.navigation.getParam("topicId", 1)}</Text>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput onChangeText={

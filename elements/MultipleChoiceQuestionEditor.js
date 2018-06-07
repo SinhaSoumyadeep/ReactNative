@@ -4,6 +4,9 @@ import {Text, Button, CheckBox} from 'react-native-elements'
 import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements'
 import { withNavigation } from 'react-navigation';
 import QuestionList from "../components/QuestionList";
+import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
+
+
 
 class MultipleChoiceQuestionEditor extends React.Component {
   static navigationOptions = { title: "Multiple Choice"}
@@ -14,7 +17,8 @@ class MultipleChoiceQuestionEditor extends React.Component {
       title: '',
         subtitle: '',
       points: 0,
-      options:''
+      options:'option1\noption2\noption3',
+        correctOption: 0
     }
 
   }
@@ -45,7 +49,8 @@ class MultipleChoiceQuestionEditor extends React.Component {
                 title: this.props.navigation.getParam("question", 1).title,
                 subtitle: this.props.navigation.getParam("question", 1). subtitle,
                 points:this.props.navigation.getParam("question", 1). points,
-                options: this.props.navigation.getParam("question", 1).options
+                options: this.props.navigation.getParam("question", 1).options,
+                correctOption: this.props.navigation.getParam("question", 1).correctOption
 
             })
 
@@ -61,9 +66,8 @@ class MultipleChoiceQuestionEditor extends React.Component {
     widgetSave()
     {
 
-        var mulQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, options: this.state.options, icon: 'list', type: "MC"}
+        var mulQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, options: this.state.options, icon: 'list', type: "MC", correctOption: this.state.correctOption}
         var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/question/EID'.replace('EID',this.state.examId)
-        Alert.alert(saveUrl)
         fetch(saveUrl, {
             body: JSON.stringify(mulQuiz),
             headers: {
@@ -73,13 +77,19 @@ class MultipleChoiceQuestionEditor extends React.Component {
         }).then(() => this.props.navigation.navigate('QuestionList',{status: "saved"}))
     }
 
+    onSelect(index, value){
+        this.setState({
+            correctOption: value
+        })
+    }
+
 
 
 
   render() {
     return(
       <ScrollView>
-          <Text h1>the topic id oos : {this.state.examId}</Text>
+
         <FormLabel>Title</FormLabel>
         <FormInput onChangeText={
           text => this.updateForm({title: text})
@@ -142,32 +152,42 @@ class MultipleChoiceQuestionEditor extends React.Component {
                  title="Cancel"/>
 
         <Text h3>Preview</Text>
-        <Text h2>{this.state.title}</Text><Text h2>{this.state.points}</Text>
-        <Text>{this.state.subtitle}</Text>
-          {this.state.options != ''&&this.state.options.split('\n').map((option,index)=>
-              {
+          <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10, backgroundColor: "white"}}>
+              <Text style={{borderWidth: 1, borderColor: "#aaa"}} h2>Multiple Choice</Text>
+        <Text h4>{this.state.title}</Text><Text h4>Points: {this.state.points}</Text>
+        <Text >Question: {this.state.subtitle}</Text>
 
-                  return(
+          <RadioGroup
+              onSelect = {(index, value) => this.onSelect(index, value)}
+              selectedIndex={this.state.correctOption}
+          >
 
-                      <View key={index}>
+              {this.state.options != ''&&this.state.options.split("\n").map((option,index)=>(
 
-                      <Button
-                          key={index}
-                          backgroundColor="green"
-                                 color="white"
-                                 title={option}
-                          style={{margin: 3}}
-                      />
-                      </View>
+                  <RadioButton key={index} value={index} >
+                      <Text>{option}</Text>
+                  </RadioButton>
+
 
                   )
-              }
+              )}
+
+
+          </RadioGroup>
+              <Button	backgroundColor="green"
+                         color="white"
+                         title="Save"
+
+
+              />
+              <Button	backgroundColor="red"
+                         color="white"
+                         title="Cancel"/>
+          </View>
 
 
 
 
-
-          )}
 
 
       </ScrollView>

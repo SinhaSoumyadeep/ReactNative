@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ScrollView, Alert, TextInput} from 'react-native'
+import {View, ScrollView, Alert, TextInput} from 'react-native'
 import {Text, Button, CheckBox} from 'react-native-elements'
 import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements'
 
@@ -65,7 +65,7 @@ class AssignmentEditor extends Component {
 
         var assign = {id: this.props.navigation.getParam("assignment", 1).id,title: this.state.title, description: this.state.description, points: this.state.points, widgetType: "Assignment"}
         var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
-        Alert.alert(saveUrl)
+
         fetch(saveUrl, {
             body: JSON.stringify(assign),
             headers: {
@@ -80,10 +80,10 @@ class AssignmentEditor extends Component {
         return(
 
 
-            <ScrollView style={{padding: 15}}>
+            <ScrollView >
 
 
-                <Text h1>THIS IS THE TOPIC ID:{this.props.navigation.getParam("topicId", 1)}</Text>
+
 
                 <FormLabel>Title</FormLabel>
                 <FormInput onChangeText={
@@ -125,14 +125,17 @@ class AssignmentEditor extends Component {
                            title="Cancel"/>
 
                 <Text h3>Preview</Text>
-                <Text h2>Assignment</Text>
-                <Text h3>{this.state.title}</Text>
-                <Text h4>Points: {this.state.points}</Text>
-                <Text h6>{this.state.description}</Text>
+                <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10, backgroundColor: "white"}}>
+                <Text style={{borderWidth: 1, borderColor: "#aaa"}} h2>Assignment</Text>
+                    <View>
+                        <Text h3>{this.state.title}</Text>
+                        <Text h4>Points: {this.state.points}</Text>
+                        <Text h6>{this.state.description}</Text>
+                    </View>
                 <TextInput
                     style={{
                         borderWidth: 1,
-                        borderColor: "black",
+                        borderColor: "#aaa",
                         height: 134
 
                     }}
@@ -141,6 +144,7 @@ class AssignmentEditor extends Component {
                            color="white"
                            title="Save"
                            onPress={() => {Alert.alert("save")}}/>
+                </View>
 
             </ScrollView>
         )

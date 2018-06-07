@@ -4,9 +4,12 @@ import {Text, Button, CheckBox} from 'react-native-elements'
 import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements'
 import { withNavigation } from 'react-navigation';
 import QuestionList from "../components/QuestionList";
+import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
 
-class EssayQuestion extends React.Component {
-    static navigationOptions = { title: "EssayQuestion"}
+
+
+class FillInTheBlanks extends React.Component {
+    static navigationOptions = { title: "FillInTheBlanks"}
     constructor(props) {
         super(props)
         this.state = {
@@ -14,6 +17,7 @@ class EssayQuestion extends React.Component {
             title: '',
             subtitle: '',
             points: 0,
+            blanks:'2+2=[four=4]\n3+[six=6]=9'
 
         }
 
@@ -45,6 +49,7 @@ class EssayQuestion extends React.Component {
                 title: this.props.navigation.getParam("question", 1).title,
                 subtitle: this.props.navigation.getParam("question", 1). subtitle,
                 points:this.props.navigation.getParam("question", 1). points,
+                blanks: this.props.navigation.getParam("question", 1).blanks,
 
 
             })
@@ -61,17 +66,30 @@ class EssayQuestion extends React.Component {
     widgetSave()
     {
 
-        var essayQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, options: this.state.options, icon: 'subject', type: "ES"}
-        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/essayquestion/EID'.replace('EID',this.state.examId)
-
+        var fbQuiz = {id: this.state.id,title: this.state.title, subtitle: this.state.subtitle, points: this.state.points, blanks: this.state.blanks, icon: 'code', type: "FB"}
+        var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/fbquestion/EID'.replace('EID',this.state.examId)
         fetch(saveUrl, {
-            body: JSON.stringify(essayQuiz),
+            body: JSON.stringify(fbQuiz),
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'POST'
         }).then(() => this.props.navigation.navigate('QuestionList',{status: "saved"}))
     }
+
+    renderHtml()
+    {
+        Alert.alert("inside render Html")
+        return(
+            <View>
+
+                <Text>Hello</Text>
+            </View>
+
+        )
+    }
+
+
 
 
 
@@ -115,7 +133,20 @@ class EssayQuestion extends React.Component {
                     Point is required
                 </FormValidationMessage>
 
+                <FormLabel>Choices</FormLabel>
+                <TextInput
+                    style={{
+                        borderWidth: 1,
+                        borderColor: "black",
+                        height: 134
 
+                    }}
+                    multiline={true}
+                    editable={true}
+                    onChangeText={
+                        text => this.updateForm({blanks: text})}
+                    value={""+this.state.blanks}
+                />
 
 
                 <Button	backgroundColor="green"
@@ -129,21 +160,56 @@ class EssayQuestion extends React.Component {
                            title="Cancel"/>
 
                 <Text h3>Preview</Text>
+
                 <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10,backgroundColor: "white"}}>
-                    <Text style={{borderWidth: 1, borderColor: "#aaa"}} h2>Essay</Text>
+                    <Text style={{borderWidth: 1, borderColor: "#aaa"}} h2>Fill In The Blanks</Text>
                 <Text h4>{this.state.title}</Text><Text h4>Points: {this.state.points}</Text>
-                <Text >Question: {this.state.subtitle}</Text>
-                    <TextInput
-                        style={{
-                            borderWidth: 1,
-                            borderColor: "black",
-                            height: 134
+                <Text>Question: {this.state.subtitle}</Text>
 
-                        }}
-                        multiline={true}
-                        editable={true}
 
-                    />
+                    {this.state.blanks != ''&&this.state.blanks.split("\n").map((option,index)=>{
+
+
+                        if (option.indexOf("[") >= 0&&option.indexOf("]") >= 0) {
+                            var first = option.split("[")
+                            var second = first[1].split("]")
+
+                            return (
+                                <View key={index} style={{flexDirection: "row"}}>
+                                    <View key={1000+index}>
+
+                                        <Text key={index} h4>{first[0]}</Text>
+                                    </View>
+                                    <View key={2000+index}>
+                                        <TextInput
+                                            style={{
+                                                borderWidth: 1,
+                                                borderColor: "black",
+                                                height: 5,
+                                                padding: 20
+
+                                            }}
+                                            multiline={true}
+                                            editable={true}
+                                        ></TextInput>
+                                    </View>
+                                    <View key={3000+index}>
+                                        <Text h4>{second[1]}</Text>
+                                    </View>
+
+
+
+                                </View>
+
+                            )
+                        }
+
+
+
+                    })
+
+                    }
+
                     <Button	backgroundColor="green"
                                color="white"
                                title="Save"
@@ -157,9 +223,15 @@ class EssayQuestion extends React.Component {
 
 
 
+
+
+
+
+
+
             </ScrollView>
         )
     }
 }
 
-export default withNavigation(EssayQuestion);
+export default withNavigation(FillInTheBlanks);

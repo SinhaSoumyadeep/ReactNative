@@ -28,10 +28,10 @@ class WidgetList extends Component {
       <View style={{padding: 15}}>
 
 
-          <Text h1>THIS IS THE TOPIC ID:{this.props.navigation.getParam("topicId", 1)}</Text>
-          <Button title="Assignment"
+
+          <Button backgroundColor="green" style={{margin: 5}} title="Assignment"
                   onPress={() => this.props.navigation.navigate('Assignment', {topicId: this.props.navigation.getParam("topicId", 1)}) } />
-          <Button title="Quiz"
+          <Button  backgroundColor="green" style={{margin: 5}} title="Quiz"
                   onPress={() => this.props.navigation.navigate('ExamWidget', {topicId: this.props.navigation.getParam("topicId", 1)}) } />
       </View>
     )

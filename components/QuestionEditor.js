@@ -6,6 +6,7 @@ import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements
 import MultipleChoiceQuestionEditor from "../elements/MultipleChoiceQuestionEditor";
 import EssayQuestion from "../elements/EssayQuestion";
 import TrueFalseQuestionEditor from '../elements/TrueFalseQuestionEditor';
+import FillInTheBlanks from '../elements/FillInTheBlanks'
 
 
 class QuestionEditor extends Component {
@@ -59,7 +60,7 @@ class QuestionEditor extends Component {
                 {this.state.questionType==='MC' && <MultipleChoiceQuestionEditor exam={this.props.navigation.getParam("exam", 1)}/>}
                 {this.state.questionType==='ES' && <EssayQuestion  exam={this.props.navigation.getParam("exam", 1)}/>}
                 {this.state.questionType==='TF' && <TrueFalseQuestionEditor examId={this.props.navigation.getParam("exam", 1).id}/>}
-                {this.state.questionType==='FB' && <Text h3> Fill in the blanks</Text>}
+                {this.state.questionType==='FB' && <FillInTheBlanks exam={this.props.navigation.getParam("exam", 1)}/>}
 
 
             </ScrollView>

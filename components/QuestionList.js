@@ -39,9 +39,9 @@ class QuestionList extends Component {
 
     deleteQuestion(type, id)
     {
-        Alert.alert(id)
+
         var deleteUrl= "http://10.0.0.89:8080/api/qwidget/delete/question/QWID".replace('QWID', id).replace('question', type)
-        Alert.alert(deleteUrl)
+
         fetch(deleteUrl,
             {
                 body: JSON.stringify({id: id}),
@@ -66,8 +66,8 @@ class QuestionList extends Component {
 
             <ScrollView style={{padding: 15}}>
 
-                <Text h1>THIS IS "Question" THE Exam ID:{this.props.navigation.getParam("exam", 1).id}</Text>
-                <Button title="Create Question" onPress={() => this.props.navigation.navigate('QuestionEditor', {exam: this.props.navigation.getParam("exam", 1)}) }/>
+
+                <Button backgroundColor="green" title="Create Question" onPress={() => this.props.navigation.navigate('QuestionEditor', {exam: this.props.navigation.getParam("exam", 1)}) }/>
                 {this.state.questions.map(
                     (question, index) => (
                         <ListItem
@@ -103,6 +103,9 @@ class QuestionList extends Component {
 
                                                 if(question.type == 'TF'){
                                                     this.props.navigation.navigate('TrueFalseQuestionEditor', {exam: this.props.navigation.getParam("exam", 1), question: question})
+                                                }
+                                                if(question.type == 'FB'){
+                                                    this.props.navigation.navigate('FillInTheBlanks', {exam: this.props.navigation.getParam("exam", 1), question: question})
                                                 }
 
                                             }

@@ -35,7 +35,7 @@ class ExamWidget extends Component {
 
         var exxam = {title: "DEFAULT_EXAM", description: "DEFAULT_DESCRIPTION", points: "0", widgetType: "Quiz"}
         var saveUrl = 'http://10.0.0.89:8080/api/qwidget/save/exam/TID'.replace('TID',this.props.navigation.getParam("topicId", 1))
-        Alert.alert(saveUrl)
+
         fetch(saveUrl, {
             body: JSON.stringify(exxam),
             headers: {
@@ -50,7 +50,7 @@ class ExamWidget extends Component {
 
     deleteExam(id)
     {
-        Alert.alert(id)
+
         var deleteUrl= "http://10.0.0.89:8080/api/qwidget/delete/QWID".replace('QWID', id)
         fetch(deleteUrl,
             {
@@ -75,8 +75,7 @@ class ExamWidget extends Component {
             <ScrollView style={{padding: 15}}>
 
 
-                <Text h1>THIS IS "zEDXAM" THE TOPIC ID:{this.props.navigation.getParam("topicId", 1)}</Text>
-                <Button title="Create Quiz"
+                <Button backgroundColor="green" title="Create Quiz"
                         onPress={() => {this.widgetSave()}} />
                 {this.state.exams.map(
                     (exam, index) => (
