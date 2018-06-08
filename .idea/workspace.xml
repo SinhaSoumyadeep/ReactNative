@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98314c2d-3e22-4679-b09a-cabd8178af0b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Assignment.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Assignment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/AssignmentEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AssignmentEditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AssignmentPreview.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AssignmentPreview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CourseList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CourseList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ExamEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ExamEditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ExamWidget.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ExamWidget.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LessonList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LessonList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ModuleList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ModuleList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/QuestionEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/QuestionEditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/QuestionList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/QuestionList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TopicList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TopicList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elements/EssayQuestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/elements/EssayQuestion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elements/FillInTheBlanks.js" beforeDir="false" afterPath="$PROJECT_DIR$/elements/FillInTheBlanks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/elements/MultipleChoiceQuestionEditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elements/TrueFalseQuestionEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/elements/TrueFalseQuestionEditor.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -59,8 +43,8 @@
       <file leaf-file-name="AssignmentEditor.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/AssignmentEditor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="164" column="23" selection-start-line="164" selection-start-column="23" selection-end-line="164" selection-end-column="23" />
+            <state relative-caret-position="126">
+              <caret line="148" column="42" lean-forward="true" selection-start-line="148" selection-start-column="42" selection-end-line="148" selection-end-column="42" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -225,12 +209,12 @@
       <option name="presentableId" value="Default" />
       <updated>1527985459966</updated>
       <workItem from="1527985466082" duration="12800000" />
-      <workItem from="1528146732772" duration="84311000" />
+      <workItem from="1528146732772" duration="84876000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97111000" />
+    <option name="totallyTimeSpent" value="97676000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="723" extended-state="0" />
@@ -674,8 +658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/AssignmentEditor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="164" column="23" selection-start-line="164" selection-start-column="23" selection-end-line="164" selection-end-column="23" />
+        <state relative-caret-position="126">
+          <caret line="148" column="42" lean-forward="true" selection-start-line="148" selection-start-column="42" selection-end-line="148" selection-end-column="42" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>

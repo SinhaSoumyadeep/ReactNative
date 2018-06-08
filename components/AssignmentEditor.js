@@ -137,9 +137,9 @@ class AssignmentEditor extends Component {
                     <Text h3>Preview</Text>
                     <View style={{borderWidth: 1, borderColor: "black", margin: 10, padding: 10,backgroundColor: "white"}}>
                         <Text style={{borderWidth: 1, borderColor: "#aaa", marginBottom: 10}} h2>Assignment</Text>
-                        <Text h3>{this.props.navigation.getParam("assignment", 1).title}</Text>
-                        <Text h4>Points: {this.props.navigation.getParam("assignment", 1).points}</Text>
-                        <Text h6>{this.props.navigation.getParam("assignment", 1).description}</Text>
+                        <Text h3>{this.state.title}</Text>
+                        <Text h4>Points: {this.state.points}</Text>
+                        <Text h6>{this.state.description}</Text>
                         <TextInput
                             style={{
                                 borderWidth: 1,
